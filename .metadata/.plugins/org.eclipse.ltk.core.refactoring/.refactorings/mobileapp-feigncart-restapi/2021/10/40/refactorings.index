@@ -1,0 +1,9 @@
+1633063039860	Rename package 'com.cartapp.controllers'
+1633063051068	Rename package 'com.cartapp.service'
+1633063061037	Rename package 'com.cartapp.model'
+1633063123866	Rename type 'ICartService'
+1633063140342	Rename type 'CartController'
+1633063308992	Rename type 'IFeignCartService'
+1633064128227	Delete element
+1633071957431	Copy packages
+1633072311729	Copy file

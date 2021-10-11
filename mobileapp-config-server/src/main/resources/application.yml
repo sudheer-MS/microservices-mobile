@@ -1,0 +1,6 @@
+# provide the git url to this server
+
+spring:  cloud:    config:      server:        git:          uri: https://github.com/sudheer-MS/microconfig-repo.git#         uri: C:\Users\SudheerMS\Desktop\Training\microconfigrepo
+
+
+server:  port: 8888

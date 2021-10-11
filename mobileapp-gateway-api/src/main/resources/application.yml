@@ -1,0 +1,31 @@
+server:
+  port: 9000
+  
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/
+
+#declarative configuration of routes
+#each route has id, uri, predicates(path), filters
+
+#http://localhost:9000/mobile-service/mobiles
+#http://localhost:9000/cart-service/cart/view-cart
+#http://localhost:9000/order-service/orders/view-order
+spring:  application:    name: GATEWAY-SERVICE
+  cloud:    gateway:      routes:      - id: mobileService
+        uri: lb://MOBILE-SERVICE
+        predicates:        - Path=/mobile-service/**
+      - id: cartService
+        uri: lb://CART-SERVICE
+        predicates:        - Path=/cart-service/**
+        filters:        - AddRequestHeader=desc,cart-details
+        - AddResponseHeader=result,show-cart-details
+      - id: orderService
+        uri: lb://ORDER-SERVICE
+        predicates:        - Path=/order-service/**
+        filters:
+        - AddRequestHeader=desc,order-details
+        - AddResponseHeader=result,show-order-details
+ 
+        

@@ -1,0 +1,41 @@
+server:
+  port: 8086
+  
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/
+
+
+spring:
+ application:
+    name: RESILENCE-CART-SERVICE
+    
+resilience4j:
+  circuitbreaker:
+   instances:
+      cartService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+        recordExceptions:
+                - org.springframework.web.client.HttpServerErrorException
+                - java.util.concurrent.TimeoutException
+                - java.io.IOException
+   
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
